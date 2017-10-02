@@ -1,0 +1,214 @@
+
+.wrapper {
+    position: absolute;
+    top:30%;
+    left: 50%;
+    width: 90%;
+    -webkit-transform: translate(-50%);
+    transform: translate(-50%);
+}
+
+
+
+.letter {
+    width: 48px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    overflow: hidden;
+    margin: 0 0;
+    font-family: sans-serif;
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 48px;
+    text-transform: uppercase;
+}
+.letter:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    word-break: break-all;
+    background-color: white;
+}
+
+.letter:nth-child(1):before {
+    content: "形计算器图计算机学习";
+    margin-top: -48px;
+    -webkit-animation-name: letter1;
+    animation-name: letter1;
+    -webkit-animation-duration: 1.99s;
+    animation-duration: 1.99s;
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes letter1 {
+    from {
+        margin-top: -48px;
+    }
+    to {
+        margin-top: 48px;
+    }
+}
+
+@keyframes letter1 {
+    from {
+        margin-top: -48px;
+    }
+    to {
+        margin-top: 48px;
+    }
+}
+.letter:nth-child(2):before {
+    content: "PL算rLvAlPEP";
+    margin-top: -96px;
+    -webkit-animation-name: letter2;
+    animation-name: letter2;
+    -webkit-animation-duration: 2.56s;
+    animation-duration: 2.56s;
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes letter2 {
+    from {
+        margin-top: -96px;
+    }
+    to {
+        margin-top: 48px;
+    }
+}
+
+@keyframes letter2 {
+    from {
+        margin-top: -96px;
+    }
+    to {
+        margin-top: 48px;
+    }
+}
+.letter:nth-child(3):before {
+    content: "器算机结构数据图形";
+    margin-top: -120px;
+    -webkit-animation-name: letter3;
+    animation-name: letter3;
+    -webkit-animation-duration: 1.82s;
+    animation-duration: 1.82s;
+    -webkit-animation-delay: 0.48s;
+    animation-delay: 0.48s;
+    -webkit-animation-fill-mode:  forwards;
+    animation-fill-mode:  forwards;
+}
+
+@-webkit-keyframes letter3 {
+    from {
+        margin-top: -120px;
+    }
+    to {
+        margin-top: 48px;
+    }
+}
+
+@keyframes letter3 {
+    from {
+        margin-top: -120px;
+    }
+    to {
+        margin-top: 48px;
+    }
+}
+.letter:nth-child(4):before {
+    content: "图王图杭国服金计算大容";
+    margin-top: -24px;
+    -webkit-animation-name: letter4;
+    animation-name: letter4;
+    -webkit-animation-duration: 1.96s;
+    animation-duration: 1.96s;
+    -webkit-animation-delay: 0.22s;
+    animation-delay: 0.22s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes letter4 {
+    from {
+        margin-top: -24px;
+    }
+    to {
+        margin-top: 48px;
+    }
+}
+
+@keyframes letter4 {
+    from {
+        margin-top: -24px;
+    }
+    to {
+        margin-top: 48px;
+    }
+}
+.letter:nth-child(5):before {
+    content: "JC语形HTML言S";
+    margin-top: -120px;
+    -webkit-animation-name: letter5;
+    animation-name: letter5;
+    -webkit-animation-duration: 1.2s;
+    animation-duration: 1.2s;
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+    -webkit-animation-fill-mode:  forwards;
+    animation-fill-mode:  forwards;
+}
+
+@-webkit-keyframes letter5 {
+    from {
+        margin-top: -120px;
+    }
+    to {
+        margin-top: 48px;
+    }
+}
+
+@keyframes letter5 {
+    from {
+        margin-top: -120px;
+    }
+    to {
+        margin-top: 48px;
+    }
+}
+.letter:nth-child(6):before {
+    content: "HZNU57学7YYH";
+    margin-top: -216px;
+    -webkit-animation-name: letter6;
+    animation-name: letter6;
+    -webkit-animation-duration: 2.48s;
+    animation-duration: 2.48s;
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes letter6 {
+    from {
+        margin-top: -216px;
+    }
+    to {
+        margin-top: 48px;
+    }
+}
+
+@keyframes letter6 {
+    from {
+        margin-top: -216px;
+    }
+    to {
+        margin-top: 48px;
+    }
+}

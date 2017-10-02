@@ -9,6 +9,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
         <!-- Styles -->
         <style>
@@ -79,7 +80,15 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    计算机图形学
+                    <div class="wrapper">
+                        <div class="letters">
+                            <span class="letter">计</span>
+                            <span class="letter">算</span>
+                            <span class="letter">机</span>
+                            <span class="letter">图</span>
+                            <span class="letter">形</span>
+                            <span class="letter">学</span>
+                        </div>
                 </div>
 
                 <div class="links">
@@ -92,4 +101,5 @@
             </div>
         </div>
     </body>
+    <script src="{{ asset('js/app.js') }}"></script>
 </html>

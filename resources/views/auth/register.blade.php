@@ -39,25 +39,34 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <div class="form-group password {{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">密码</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password" type="password" class="form-control input-password" name="password" required>
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
+                                <div class="progress-bar_wrap hidden">
+                                    <div class="progress-bar_item progress-bar_item-1"></div>
+                                    <div class="progress-bar_item progress-bar_item-2"></div>
+                                    <div class="progress-bar_item progress-bar_item-3"></div>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="form-group">
+                        <div class="form-group password-confirm">
                             <label for="password-confirm" class="col-md-4 control-label">确认密码</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm" type="password" class="form-control input-password-confirm " name="password_confirmation" required>
+                                <div class=" progress-bar_wrap  hidden">
+                                    <div class="progress-bar_item progress-bar_item-1"></div>
+                                    <div class="progress-bar_item progress-bar_item-2"></div>
+                                    <div class="progress-bar_item progress-bar_item-3"></div>
+                                </div>
                             </div>
                         </div>
 

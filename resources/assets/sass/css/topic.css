@@ -244,3 +244,6 @@
 .progress-bar_item-3.active {
     background-color: #2DAF7D;
 }
+.split-line{
+    border: 0.5px solid;
+}

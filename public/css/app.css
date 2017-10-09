@@ -246,8 +246,8 @@
 }
 .split-line{
     border: 0.5px solid;
-}
-@charset "UTF-8";
+    margin-bottom: 10px;
+}@charset "UTF-8";
 
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)

@@ -14,7 +14,8 @@ class ExploreController extends Controller
     public function index()
     {
         $explore_model = new Explore();
-        $explore_data  = $explore_model->getAllExplore();
+        $explore_data['explore'] = $explore_model->getAllExplore();
+        $explore_data['goods']   = $explore_model->getTheMostGoodExplore();
         return view('document.explores',compact('explore_data'));
     }
 

@@ -5,7 +5,7 @@
         <div class="panel">
             <div class="panel-body">
                 <div class="col-lg-offset-1">
-                    <i class="glyphicon glyphicon-th-list"></i>
+                    <i class="glyphicon glyphicon-fire"></i>
                     <span>最新热点</span>
                 </div>
                 <div class=" col-lg-offset-1 col-sm-6">
@@ -51,11 +51,11 @@
                     <div class=" col-lg-offset-1 col-md-6 ">
                         @foreach($explore_data['explore'] as $explore)
                             <div class="media">
-                                <div class="media-body">
+                                <div class="media-heading">
                                     <h4 class="media-heading">
-                                        {{$explore->title}}
+                                        <a class="index-link" href="/explore/{{$explore->id}}">{{$explore->title}}</a>
                                     </h4>
-                                    <p class="media-object">
+                                    <p class="media-body">
                                         {{$explore->content}}
                                     </p>
                                 </div>

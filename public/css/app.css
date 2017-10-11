@@ -247,6 +247,12 @@
 .split-line{
     border: 0.5px solid;
     margin-bottom: 10px;
+}
+.index-link:hover{
+    text-decoration:underline;
+}
+.index-link{
+    color:#565151
 }@charset "UTF-8";
 
 /*!

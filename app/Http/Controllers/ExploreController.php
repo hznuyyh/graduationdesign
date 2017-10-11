@@ -19,8 +19,9 @@ class ExploreController extends Controller
         return view('document.explores',compact('explore_data'));
     }
 
-    public function create()
+    public function exploreInfo($explore_id)
     {
-
+        $data = Explore::find($explore_id);
+        return view('document.explores_alone',compact('data'));
     }
 }

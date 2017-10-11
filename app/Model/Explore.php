@@ -18,6 +18,7 @@ class Explore extends Model
         return Explore::latest('updated_at')->get();
     }
 
+
     public function getTheMostGoodExplore()
     {
         $timeThreeDayAgo = date('Y-m-d',strtotime('-3 day',time()));

@@ -21,4 +21,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'explore'],function (){
     Route::get('index','ExploreController@index');
+    Route::get('/{explore_id}','ExploreController@exploreInfo');
 });

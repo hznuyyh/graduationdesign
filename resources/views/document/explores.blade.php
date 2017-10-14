@@ -16,14 +16,21 @@
                         <div class=" col-lg-offset-1 col-md-6 ">
                             <div class="media">
                                 <div class="media-body">
-                                    <h4 class="media-heading">
-                                        {{$explore_data['goods']->title}}
-                                    </h4>
-                                    <p class="media-object">
+                                    <h3 class="media-heading">
+                                        <a class="index-link" href="/explore/{{$explore_data['goods']->id}}">{{$explore_data['goods']->title}}</a>
+                                        <small class="user_name right">{{\App\User::getName($explore_data['goods']->user_id)}}</small>
+                                    </h3>
+                                    @if(!empty(\App\Model\Avatar::getUrl($explore_data['goods']->user_id)->url))
+                                        <div class="media-left avatar">
+                                            <img style="width: 45px;height: 45px" src="{{\App\Model\Avatar::getUrl($explore_data['goods']->user_id)->url}}">
+                                        </div>
+                                    @endif
+                                    <p class="media-right media-object">
                                         {{$explore_data['goods']->content}}
                                     </p>
                                 </div>
                             </div>
+
                         </div>
                     @else
                         <div class=" col-lg-offset-1 col-md-6 ">

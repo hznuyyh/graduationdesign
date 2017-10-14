@@ -20,6 +20,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'explore'],function (){
+    Route::get('create','ExploreController@create');
     Route::get('index','ExploreController@index');
     Route::get('/{explore_id}','ExploreController@exploreInfo');
+});
+Route::group(['prefix' => 'avatar'],function (){
+    Route::post('/store','AvatarController@store');
+    Route::get('/create','AvatarController@create');
+    Route::get('/{user_id}','AvatarController@avatar');
 });

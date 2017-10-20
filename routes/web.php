@@ -29,3 +29,8 @@ Route::group(['prefix' => 'avatar'],function (){
     Route::get('/create','AvatarController@create');
     Route::get('/{user_id}','AvatarController@avatar');
 });
+Route::group(['prefix' => 'video'],function (){
+   Route::get('/index','VideoController@index');
+   Route::get('/create','VideoController@create');
+   Route::post('/store','VideoController@store');
+});

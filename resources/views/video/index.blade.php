@@ -2,25 +2,28 @@
 
 @section('content')
     <div class="container">
-        <div class="panel">
+        <div class="media">
             <div class=" panel-heading">
-                 我的视频
+                <h4>视频列表</h4>
+                <hr class="split-line">
             </div>
-            <div class="panel-body">
                 @foreach($data as $item)
-                    <div class="media">
-                        <div class="media-heading">
-                            {{$item->name}}
+                    <div class="col-lg-6" >
+                        <div class="text-center">
+                            <h4 class="center-align">{{$item->name}}</h4>
                         </div>
-                        <div class="media-object">
-                            {{$item->content}}
+                        <div class="ellipsis">
+                            <span>{{$item->content}}</span>
                         </div>
-                        <div class="media-body">
-                            {!! $item->url !!}
+                        <div class="panel">
+                        <div class="embed-responsive embed-responsive-16by9 panel-body">
+                            <div class="panel-body">
+                                {!! $item->url!!}
+                             </div>
+                        </div>
                         </div>
                     </div>
                 @endforeach
-            </div>
         </div>
     </div>
 @endsection

@@ -254,3 +254,9 @@
 .index-link{
     color:#565151
 }
+.ellipsis{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-indent: 2em;
+}

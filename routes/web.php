@@ -31,6 +31,6 @@ Route::group(['prefix' => 'avatar'],function (){
 });
 Route::group(['prefix' => 'video'],function (){
    Route::get('/index','VideoController@index');
-   Route::get('/create','VideoController@create');
+   Route::get('/create','VideoController@create')->middleware('auth');
    Route::post('/store','VideoController@store');
 });

@@ -31737,6 +31737,11 @@ $(document).ready(function () {
         }
     });
 });
+$('button#contact').click(function () {
+    $('button#contact').toggleClass('active');
+    $('div.title').toggleClass('active');
+    $('nav#nav').toggleClass('active');
+});
 
 /***/ }),
 /* 36 */

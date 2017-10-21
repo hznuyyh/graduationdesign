@@ -20,13 +20,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'explore'],function (){
-    Route::get('create','ExploreController@create');
+    Route::get('create','ExploreController@create')->middleware('auth');
     Route::get('index','ExploreController@index');
     Route::get('/{explore_id}','ExploreController@exploreInfo');
 });
 Route::group(['prefix' => 'avatar'],function (){
     Route::post('/store','AvatarController@store');
-    Route::get('/create','AvatarController@create');
+    Route::get('/create','AvatarController@create')->middleware('auth');
     Route::get('/{user_id}','AvatarController@avatar');
 });
 Route::group(['prefix' => 'video'],function (){

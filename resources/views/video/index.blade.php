@@ -8,7 +8,7 @@
                 <hr class="split-line">
             </div>
                 @foreach($data as $item)
-                    <div class="col-lg-6" >
+                    <div class="col-lg-3" >
                         <div class="text-center">
                             <h4 class="center-align">{{$item->name}}</h4>
                         </div>
@@ -25,5 +25,8 @@
                     </div>
                 @endforeach
         </div>
+    </div>
+    <div class="text-center">
+        {{$data->links()}}
     </div>
 @endsection

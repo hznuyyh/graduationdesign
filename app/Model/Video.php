@@ -19,6 +19,6 @@ class Video extends Model
 
     public function find()
     {
-        return Video::latest('updated_at')->get();
+        return DB::table('video')->paginate(12);
     }
 }

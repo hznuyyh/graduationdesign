@@ -10,7 +10,7 @@
                 @foreach($data as $item)
                     <div class="col-lg-3" >
                         <div class="text-center">
-                            <h4 class="center-align">{{$item->name}}</h4>
+                            <h4 class="center-align" style="overflow: hidden; text-overflow: ellipsis;">{{$item->name}}</h4>
                         </div>
                         <div class="ellipsis">
                             <span>{{$item->content}}</span>

@@ -19,6 +19,6 @@ class Video extends Model
 
     public function find()
     {
-        return DB::table('video')->orderBy('name','desc')->paginate(12);
+        return DB::table('video')->orderBy('name','asc')->paginate(12);
     }
 }

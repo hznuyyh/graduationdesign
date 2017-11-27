@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d7222c4e48cd0e1b60bb06234abadd44",
+    "content-hash": "09f3a5bd6d4847ddf2d4a407e9d19152",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2255,6 +2255,36 @@
             "time": "2015-06-14T21:17:01+00:00"
         },
         {
+            "name": "eaglewu/swoole-ide-helper",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eaglewu/swoole-ide-helper.git",
+                "reference": "a30eba74914be54fb747579b033015c73eacef48"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/eaglewu/swoole-ide-helper/a30eba74914be54fb747579b033015c73eacef48.zip",
+                "reference": "a30eba74914be54fb747579b033015c73eacef48",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Swoole\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "eagle",
+                    "email": "eaglewudi@gmail.com"
+                }
+            ],
+            "description": "Swoole 在IDE下自动识别类、函数、宏，自动补全函数名",
+            "time": "2017-11-09T06:44:51+00:00"
+        },
+        {
             "name": "filp/whoops",
             "version": "2.1.12",
             "source": {
@@ -3876,7 +3906,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "eaglewu/swoole-ide-helper": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

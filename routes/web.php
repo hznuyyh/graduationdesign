@@ -35,5 +35,6 @@ Route::group(['prefix' => 'video'],function (){
    Route::post('/store','VideoController@store');
 });
 Route::group(['prefix' => 'direct'],function (){
-    Route::get('/test','DirectController@connect');
+    Route::get('/receiverMessage','DirectController@connect');
+    Route::get('/chatRoom','DirectController@chatRoom');
 });

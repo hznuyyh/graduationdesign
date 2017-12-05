@@ -38,7 +38,7 @@
 
         <script language="JavaScript">
 
-            var exampleSocket = new WebSocket("ws://127.0.0.1:9501");
+            var exampleSocket = new WebSocket("ws://47.95.205.248:9501");
 
             exampleSocket.onmessage = function (event) {
                 console.log(event.data);

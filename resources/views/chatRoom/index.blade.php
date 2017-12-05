@@ -50,9 +50,6 @@
             exampleSocket.onopen = function (event) {
 
             };
-            $("#send").click(function(){
-
-            });
             function sendingMessage() {
                 var msg = document.getElementById('message').value;
                 exampleSocket.send(msg);

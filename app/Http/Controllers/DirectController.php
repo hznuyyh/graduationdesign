@@ -32,7 +32,7 @@ class DirectController extends Controller
 
     public function test()
     {
-        $server = new \swoole_websocket_server("0.0.0.0", 9501);
+        $server = new \swoole_websocket_server("192.168.1.99", 9501);
 
         $server->on('open', function (\swoole_websocket_server $server, $request) {
             file_put_contents( __DIR__ .'/log.txt' , $request->fd);

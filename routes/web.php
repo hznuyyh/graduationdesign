@@ -36,5 +36,6 @@ Route::group(['prefix' => 'video'],function (){
 });
 Route::group(['prefix' => 'direct'],function (){
     Route::get('/receiverMessage','DirectController@connect');
-    Route::get('/chatRoom','DirectController@chatRoom');
+    Route::get('/chatRoom/live','DirectController@chatRoom');
+    Route::get('/chatRoom/camera','DirectController@cameraRoom');
 });

@@ -31736,6 +31736,12 @@ $(document).ready(function () {
             });
         }
     });
+    $('#bangong,#biancheng,#zhiye,#shenghuo,#yuyan').mouseover(function () {
+        var id = "." + this.id + "-menu";
+        $(".menu-right").removeClass("active").addClass("hidden");
+        $(id).addClass("active").removeClass("hidden");
+        console.log(id);
+    });
 });
 $('button#contact').click(function () {
     $('button#contact').toggleClass('active');

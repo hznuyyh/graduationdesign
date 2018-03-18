@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\UserModel\UserClassModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user_id = Auth::id();
+        $user_class_model = new UserClassModel();
+        $user_class_info  = $user_class_model->getUserClassInfo($user_id);
+        dump($user_class_info);
+        return view('home',['user_class' => $user_class_info]);
     }
 }

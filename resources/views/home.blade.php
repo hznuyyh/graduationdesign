@@ -40,7 +40,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-md-offset-0  menu-right  active  bangong-menu" id="bangong-menu">
+    <div class="col-md-5 col-md-offset-0  menu-right  active  bangong-menu" id="bangong-menu">
         <div class="row panel-heading">
             <h3 class=""></h3>
         </div>
@@ -62,7 +62,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-md-offset-0  menu-right  hidden zhiye-menu"   id="zhiye-menu">
+    <div class="col-md-5 col-md-offset-0  menu-right  hidden zhiye-menu"   id="zhiye-menu">
         <div class="row panel-heading">
             <h3 class=""></h3>
         </div>
@@ -94,7 +94,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-md-offset-0  menu-right  hidden biancheng-menu" id="biancheng-menu">
+    <div class="col-md-5 col-md-offset-0  menu-right  hidden biancheng-menu" id="biancheng-menu">
         <div class="row panel-heading">
             <h3 class=""></h3>
         </div>
@@ -126,7 +126,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-md-offset-0  menu-right  hidden shenghuo-menu" id="shenghuo-menu">
+    <div class="col-md-5 col-md-offset-0  menu-right  hidden shenghuo-menu" id="shenghuo-menu">
         <div class="row panel-heading">
             <h3 class=""></h3>
         </div>
@@ -163,7 +163,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-md-offset-0  menu-right  hidden yuyan-menu" id="yuyan-menu">
+    <div class="col-md-5 col-md-offset-0  menu-right  hidden yuyan-menu" id="yuyan-menu">
         <div class="row panel-heading">
             <h3 class=""></h3>
         </div>
@@ -195,5 +195,65 @@
             </div>
         </div>
     </div>
+    <div class="col-lg-3 col-lg-offset-0">
+        <div class="row panel-heading">
+            <h3 class=""></h3>
+        </div>
+        <div class="panel-body list-group">
+            <div class="panel-content list-group-item alert-danger">
+                <div class="glyphicon glyphicon-folder-open">
+                    我的收藏
+                </div>
+            </div>
+            <div class=" panel-content list-group-item">
+                <div class="glyphicon glyphicon-question-sign">
+                    我关注的问题
+                </div>
+            </div>
+            <div class=" panel-content list-group-item">
+                <div class="glyphicon glyphicon-magnet ">
+                    我的邀请
+                </div>
+            </div>
+            <div class="panel-content list-group-item">
+                <div class="glyphicon glyphicon-log-in">
+                    社区服务中心
+                </div>
+            </div>
+            <div class=" panel-content list-group-item">
+                <div class="glyphicon glyphicon-ok">
+                    版权服务中心
+                </div>
+            </div>
+            <div class="panel-content list-group-item">
+                <div class="glyphicon glyphicon-object-align-bottom">
+                    公共编辑状态
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
+<hr class="split-line" width="80%">
+        <div >
+            <div class="panel-heading col-md-offset-1">
+                <div class="row panel-heading">
+                    <h3 class="glyphicon glyphicon-play">
+                        我的课程
+                    </h3>
+                </div>
+            </div>
+            <div style="margin: 40px;margin-left: -35px; height: 920px">
+                @foreach ($user_class as $u )
+                    <div class="panel col-md-3 col-lg-offset-1">
+                        <div class="panel-body">
+                            <h2 class="icon-font">{{$u->class_name}}</h2>
+                        </div>
+                        <div class="panel-body col-md-3">
+                                <img width="280" height="200" src={{$u->class_img_src}}>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
 @endsection

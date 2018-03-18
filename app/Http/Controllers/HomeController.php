@@ -28,7 +28,6 @@ class HomeController extends Controller
         $user_id = Auth::id();
         $user_class_model = new UserClassModel();
         $user_class_info  = $user_class_model->getUserClassInfo($user_id);
-        dump($user_class_info);
         return view('home',['user_class' => $user_class_info]);
     }
 }

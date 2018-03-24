@@ -377,3 +377,7 @@ ul.nacc li.active {
 ul.nacc li p {
     margin: 0;
 }
+.image-class:hover {
+    width: 120%;
+    height: 120%;
+}

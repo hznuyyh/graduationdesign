@@ -250,12 +250,12 @@
                         <h3 class="icon-font" style="margin: 2px">{{$u->class_name}}</h3>
                     </div>
                     <div class="panel-body" style="padding: 0px;">
-                        <img style="width: 100%;height: 100%;padding: 0px" src={{$u->class_img_src}}>
+                        <img class='image-class' style="width: 100%;height: 100%;padding: 0px" src={{$u->class_img_src}}>
                     </div>
                     <div class="panel-body col-md-12" style="padding-top: -200px">
                         <?php
                         if (strlen($u->class_description) > 120 ){
-                            echo "<small class='image-class'>".substr($u->class_description,0,60) . "...." . "</small>";
+                            echo "<small>".substr($u->class_description,0,60) . "...." . "</small>";
                         } else {
                             echo "<small>".$u->class_description . "</small>";
                         }

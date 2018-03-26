@@ -31742,6 +31742,11 @@ $(document).ready(function () {
         $(id).addClass("active").removeClass("hidden");
         console.log(id);
     });
+
+    function classFollow() {
+        var value = this.getValue();
+        console.log(value);
+    }
 });
 $('button#contact').click(function () {
     $('button#contact').toggleClass('active');

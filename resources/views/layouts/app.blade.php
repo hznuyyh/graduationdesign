@@ -73,6 +73,31 @@
 
         @yield('content')
     </div>
+    <div >
+        <hr class="split-line" width="80%">
+    </div>
+    <footer style="padding-top: 20px;position: inherit;bottom: -100px;margin-bottom: 00px">
+        <div class="jumbotron" style="padding: 20px">
+            <h5 class="panel-heading col-md-3 col-md-offset-4" style="color: #2F3133; margin: 0px;padding-left: 160px" >
+                杭州师范大学教学网
+            </h5>
+            <h4 style="float: right;" class="col-md-3 col-md-offset-4">
+                <a href="https://github.com/hznuyyh/graduationdesign">GitHub仓库</a>
+                <br>
+                <small class="contact" onmouseover="showImage()" onmouseout="hiddenImage()" >与我联系</small>
+                <img src="/image/531521876208_.pic.jpg" class="img-contact" style="width:300px;display:none;position:absolute;left: -300px;top: -300px;">
+            </h4>
+            <small style="float: inherit " >我们一直致力于为广大开发者提供更多的优质技术文档和辅助开发工具</small>
+        </div>
+    </footer>
+    <script>
+        function showImage() {
+            $(".img-contact").fadeIn("300")
+        }
+        function hiddenImage() {
+            $(".img-contact").fadeToggle("300")
+        }
+    </script>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

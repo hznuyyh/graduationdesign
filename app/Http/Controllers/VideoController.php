@@ -9,16 +9,38 @@
 namespace App\Http\Controllers;
 
 
-use App\Model\Video;
-use Illuminate\Http\Request;
+use App\Model\ClassModel\ClassModel;
+use App\Model\ClassModel\ClassVideoModel;
+use App\Model\UserModel\UserClassModel;
+use Illuminate\Support\Facades\Auth;
 
 class VideoController extends Controller
 {
-    public function index()
+    /**
+     * @param $class_id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * 课程视频首页
+     */
+    public function index($class_id)
     {
-        $video = new Video();
-        $data  = $video->find();
-        return view('video.index',compact('data'));
+        $class_video      = new ClassVideoModel();
+        $class            = new ClassModel();
+        $user_class       = new UserClassModel();
+        $class_video_data = $class_video->getClassVideoByClassId($class_id);
+        $class_info_data  = $class->getClassInfoById($class_id);
+        $class_count      = $user_class->getCountUserClass($class_id);
+        $user_class_data  = $user_class->getUserClassProgress(Auth::id(),$class_id);
+        if ($user_class_data == null || $user_class_data->class_progress == 0) {
+            $class_progress = 0;
+        } else {
+            $class_progress = $user_class_data->class_progress;
+        }
+        return view('video.index',[
+            'class_video_data' => $class_video_data,
+            'class_info_data'  => $class_info_data,
+            'count'            => $class_count,
+            'class_progress'   => $class_progress
+        ]);
     }
 
     public function create()

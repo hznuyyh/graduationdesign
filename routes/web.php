@@ -30,7 +30,7 @@ Route::group(['prefix' => 'avatar'],function (){
     Route::get('/{user_id}','AvatarController@avatar');
 });
 Route::group(['prefix' => 'video'],function (){
-   Route::get('/index','VideoController@index');
+   Route::get('/index/{id}','VideoController@index');
    Route::get('/create','VideoController@create')->middleware('auth');
    Route::post('/store','VideoController@store');
 });
@@ -38,4 +38,7 @@ Route::group(['prefix' => 'direct'],function (){
     Route::get('/receiverMessage','DirectController@connect');
     Route::get('/chatRoom/live','DirectController@chatRoom');
     Route::get('/chatRoom/camera','DirectController@cameraRoom');
+});
+Route::group(['prefix' => 'class'],function (){
+    Route::post('/follow','ClassController@classFollow');
 });

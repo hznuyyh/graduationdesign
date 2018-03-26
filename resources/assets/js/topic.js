@@ -48,9 +48,12 @@ $( document ).ready(function() {
         $(id).addClass("active").removeClass("hidden");
         console.log(id);
     });
+
 });
 $('button#contact').click(function () {
     $('button#contact').toggleClass('active');
     $('div.title').toggleClass('active');
     $('nav#nav').toggleClass('active');
 });
+
+

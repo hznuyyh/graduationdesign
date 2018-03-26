@@ -195,7 +195,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-lg-offset-0">
+        <div class="col-lg-3 col-lg-offset-1">
             <div class="row panel-heading">
                 <h3 class=""></h3>
             </div>
@@ -243,11 +243,11 @@
                 </h3>
             </div>
         </div>
-        <div style="margin: 40px;margin-left: -35px; height: 920px">
+        <div style="margin: 40px;margin-left: -35px;">
             @foreach ($user_class as $u )
                 <div class="panel col-md-3 col-lg-offset-1" style="padding: 0px">
                     <div class="panel-heading">
-                        <h3 class="icon-font" style="margin: 2px">{{$u->class_name}}</h3>
+                        <h3 class="icon-font" style="margin: 2px"> <a href="/video/index/{{$u->id}}">{{$u->class_name}}</a></h3>
                     </div>
                     <div class="panel-body" style="padding: 0px;">
                         <img class='image-class' style="width: 100%;height: 100%;padding: 0px" src={{$u->class_img_src}}>

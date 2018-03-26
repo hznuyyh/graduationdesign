@@ -24,4 +24,10 @@ class Explore extends Model
         $timeThreeDayAgo = date('Y-m-d',strtotime('-3 day',time()));
         return Explore::where('created_at','>',$timeThreeDayAgo)->orderBy('goods_count','desc')->first();
     }
+
+    public function insertData($data)
+    {
+        return DB::table('explore')->insert($data);
+    }
+
 }

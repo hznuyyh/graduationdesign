@@ -12,7 +12,9 @@ namespace App\Http\Controllers;
 use App\Model\ClassModel\ClassModel;
 use App\Model\ClassModel\ClassVideoModel;
 use App\Model\UserModel\UserClassModel;
+use App\Model\Video;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class VideoController extends Controller
 {

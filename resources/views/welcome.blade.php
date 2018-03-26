@@ -82,20 +82,18 @@
                 <div class="title m-b-md">
                     <div class="wrapper">
                         <div class="letters">
-                            <span class="letter">计</span>
-                            <span class="letter">算</span>
-                            <span class="letter">机</span>
-                            <span class="letter">图</span>
-                            <span class="letter">形</span>
+                            <span class="letter">杭</span>
+                            <span class="letter">师</span>
+                            <span class="letter">大</span>
+                            <span class="letter">教</span>
                             <span class="letter">学</span>
+                            <span class="letter">网</span>
                         </div>
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
+                    <a href="/explore/index">在线论坛</a>
+                    <a href="/home">我的课程</a>
                     <a href="https://github.com/hznuyyh">GitHub</a>
                 </div>
             </div>

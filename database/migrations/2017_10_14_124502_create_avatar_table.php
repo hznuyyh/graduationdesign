@@ -17,6 +17,8 @@ class CreateAvatarTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->text('url');
+            $table->text('user_label');
+            $table->text('index_url');
             $table->integer('isUse')->default(0);
             $table->timestamps();
         });

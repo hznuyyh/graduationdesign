@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'explore'],function (){
     Route::get('create','ExploreController@create')->middleware('auth');
-    Route::get('index','ExploreController@index');
+    Route::get('home','ExploreController@index');
     Route::post('store','ExploreController@store');
     Route::get('/{explore_id}','ExploreController@exploreInfo');
     Route::post('goodToExplore','ExploreController@goodToExplore');

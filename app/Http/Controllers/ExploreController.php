@@ -8,6 +8,8 @@
  */
 namespace App\Http\Controllers;
 use App\Model\Explore;
+use App\Model\UserModel\UserExploreCommentModel;
+use App\Model\UserModel\UserExploreGoodModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -45,6 +47,11 @@ class ExploreController extends Controller
         return view('document.explores_alone',compact('data'));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * 问题存储
+     */
     public function store(Request $request)
     {
         $data    = $request->all();
@@ -64,7 +71,38 @@ class ExploreController extends Controller
         $explore_model = new Explore();
         $explore_model->insertData($insert_data);
         return redirect('/explore/index');
-
     }
+
+    /**
+     * 对文章点赞
+     */
+    public function goodToExplore(Request $request)
+    {
+        $data    = $request->all();
+        $explore_id = $data['explore_id'];
+        $type       = $data['type'];
+        $user_id    = Auth::id();
+        $user_explore_good_model = new UserExploreGoodModel();
+        $explore_model           = new Explore();
+        //历史记录查询
+        $user_explore = $user_explore_good_model->findGoodToExplore($user_id,$explore_id);
+        $data = $explore_model->getExploreById($explore_id);
+        //点赞
+        if ($type) {
+            if (empty($user_explore)) {
+                $user_explore_good_model->addGoodToExplore($user_id,$explore_id);
+                $explore_model->updateExplore(['id' => $explore_id],['goods_count' => $data->goods_count + 1]);
+            }
+        } else{
+            //取消点赞
+            if (!empty($user_explore)) {
+                $user_explore_good_model->deleteGoodToExplore($user_id,$explore_id);
+                $explore_model->updateExplore(['id' => $explore_id],['goods_count' => $data->goods_count - 1]);
+            }
+        }
+        $data = $explore_model->getExploreById($explore_id);
+        return json_encode(['code' => 0,'messages' => 'success','data'=>$data]);
+    }
+
 
 }

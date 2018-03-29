@@ -24,6 +24,7 @@ Route::group(['prefix' => 'explore'],function (){
     Route::get('index','ExploreController@index');
     Route::post('store','ExploreController@store');
     Route::get('/{explore_id}','ExploreController@exploreInfo');
+    Route::post('goodToExplore','ExploreController@goodToExplore');
 });
 Route::group(['prefix' => 'avatar'],function (){
     Route::post('/store','AvatarController@store');

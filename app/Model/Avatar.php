@@ -24,7 +24,7 @@ class Avatar extends Model
         return DB::table('avatar')->insertGetId($data);
     }
 
-    public static function getUrl($user_id)
+    public static function getInfo($user_id)
     {
         return Avatar::where('user_id',$user_id)->first();
     }

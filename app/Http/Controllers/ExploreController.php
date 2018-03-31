@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 use App\Model\Explore;
 use App\Model\UserModel\UserExploreCommentModel;
+use App\Model\UserModel\UserExploreFollowModel;
 use App\Model\UserModel\UserExploreGoodModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,6 +45,19 @@ class ExploreController extends Controller
     public function exploreInfo($explore_id)
     {
         $data = Explore::find($explore_id);
+        $user_explore_good_model = new UserExploreFollowModel();
+        $user_explore = $user_explore_good_model->findFollowToExplore(Auth::id(),$explore_id);
+        //用户关注性
+        if(empty($user_explore)) {
+            $is_follow = 0;
+        } else {
+            $is_follow = 1;
+        }
+        $data['is_follow'] = $is_follow;
+        //用户评论
+        $user_explore_comment_model = new UserExploreCommentModel();
+        $user_explore_data          = $user_explore_comment_model->findExploreAllComment($explore_id);
+        $data['user_explore']       = $user_explore_data;
         return view('document.explores_alone',compact('data'));
     }
 
@@ -102,6 +116,60 @@ class ExploreController extends Controller
         }
         $data = $explore_model->getExploreById($explore_id);
         return json_encode(['code' => 0,'messages' => 'success','data'=>$data]);
+    }
+
+    /**
+     * @param Request $request
+     * @return string
+     * 对文章进行关注
+     */
+    public function followToExplore(Request $request)
+    {
+        $data    = $request->all();
+        $explore_id = $data['explore_id'];
+        $user_id    = Auth::id();
+        $user_explore_good_model = new UserExploreFollowModel();
+        //历史记录查询
+        $user_explore = $user_explore_good_model->findFollowToExplore($user_id,$explore_id);
+        //关注
+        if (empty($user_explore)) {
+            $user_explore_good_model->addFollowToExplore($user_id,$explore_id);
+            $return_data['is_follow'] = 1;
+        } else {
+            $user_explore_good_model->deleteFollowToExplore($user_id,$explore_id);
+            $return_data['is_follow'] = 0;
+        }
+        return json_encode(['code' => 0,'messages' => 'success','data' => $return_data]);
+    }
+
+    /**
+     * @param Request $request
+     * 增加一条评论
+     */
+    public function addCommentToExplore(Request $request)
+    {
+        $data       = $request->all();
+        $explore_id      = $data['explore_id'];
+        $explore_comment = $data['explore_content'];
+        $user_id         = Auth::id();
+        $explore_model              = new Explore();
+        $user_explore_comment_model = new UserExploreCommentModel();
+        $insert_data = [
+            'user_id'    => $user_id,
+            'explore_id' => $explore_id,
+            'user_explore_content' => $explore_comment,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+
+        ];
+        $explore_data = $explore_model->getExploreById($explore_id);
+        //新增评论
+        $user_explore_comment_model->addUserExplore($insert_data);
+        //更新评论数
+        $explore_model->updateExplore(['id' => $explore_id],['comments_count' => $explore_data->comments_count + 1]);
+        return json_encode(['code' => 0,'messages' => 'success','data' => '']);
+
+
     }
 
 

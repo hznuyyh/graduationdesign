@@ -27,7 +27,7 @@
                                 <div class="media-body">
                                     <div class="media-heading">
                                         <div class="media-left avatar">
-                                        @if(\App\Model\Avatar::getInfo($explore_data['goods']->user_id)->url !="")
+                                        @if(!empty(\App\Model\Avatar::getInfo($explore_data['goods']->user_id)) && \App\Model\Avatar::getInfo($explore_data['goods']->user_id)->url !="")
                                            <img style="width: 45px;height: 45px" src="{{\App\Model\Avatar::getInfo($explore_data['goods']->user_id)->url}}">
                                         @else
                                            <img style="width: 45px;height: 45px" src="/image/avatar/default_avatar.jpeg">

@@ -7,6 +7,7 @@
 
 require('./bootstrap');
 require('./topic.js');
+require('./dist/spop');
 window.Vue = require('vue');
 
 /**

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @include('vendor.ueditor.assets')
 @section('content')
+    {{--文章主体--}}
     <div class="panel panel-body">
         <div class="panel-heading">
             <h3 class="col-md-7 col-lg-offset-1" style="color: black">{{$data->title}}</h3>
@@ -21,19 +22,60 @@
         <div class="panel-body col-lg-7 col-lg-offset-1">
             <p> {!! $data->content !!} </p>
         </div>
-        @if($data->user_id != \Illuminate\Support\Facades\Auth::id())
         <div class="panel-collapse col-lg-7 col-lg-offset-1">
+        @if($data->user_id != \Illuminate\Support\Facades\Auth::id())
             @if($data->is_follow == 1)
                 <button class="btn btn-info" id='follow-explore' value="{{$data->id}}" onclick="followToExplore(this.value)">取消关注</button>
             @else
                 <button class="btn btn-success" id='follow-explore' value="{{$data->id}}" onclick="followToExplore(this.value)">关注问题</button>
             @endif
+        @endif
+            <button class="btn btn-success hidden" id='follow-explore' value="{{$data->id}}" onclick="followToExplore(this.value)">关注问题</button>
             <a id='write_answer' href="#answer_area" class="btn btn-default col-lg-offset-0 glyphicon glyphicon-pencil" onclick="writeAnswer()">写回答</a>
             <span class='col-lg-offset-1 glyphicon glyphicon-comment'> {{$data->comments_count}}条评论</span>
         </div>
-        @endif
     </div>
+    {{--评论部分--}}
     <div class="container">
+        {{--关于作者--}}
+        <div class="panel pull-right col-md-4">
+            <div class="panel-collapse">
+                <h5 class="text-center">关于作者</h5>
+            </div>
+            <div class="panel-body">
+                <div class="media-left text-center avatar">
+                    @if(!empty(\App\Model\Avatar::getInfo($data->user_id)) && \App\Model\Avatar::getInfo($data->user_id)->url !="")
+                        <img style="width: 55px;height: 55px" src="{{\App\Model\Avatar::getInfo($data->user_id)->url}}">
+                    @else
+                        <img style="width: 55px;height: 55px" src="/image/avatar/default_avatar.jpeg">
+                    @endif
+                </div>
+                <span class="user_name media-middle media-right">
+                    <h4>{{\App\User::getName($data->user_id)->name}} &nbsp; </h4>
+                    <p class="user_name media-middle media-bottom">{{\App\Model\Avatar::getInfo($data->user_id)->user_label}}</p>
+                </span>
+
+                <h5 class="col-md-4 text-center">
+                    回答
+                </h5>
+                <h5 class="col-md-4 text-center">
+                    文章
+                </h5>
+                <h5 class="col-md-4 text-center">
+                    关注者
+                </h5>
+                <h4 class="col-md-4 text-center">
+                    1
+                </h4>
+                <h4 class="col-md-4 text-center">
+                    2
+                </h4>
+                <h4 class="col-md-4 text-center">
+                    3
+                </h4>
+            </div>
+        </div>
+        {{--评论部分--}}
         @foreach($data['user_explore'] as $explore_comment)
             <div class="panel col-md-7">
                 <div class="panel-heading">
@@ -67,8 +109,8 @@
                             <img style="width: 45px;height: 45px" src="/image/avatar/default_avatar.jpeg">
                         @endif
                     </div>
-                    <span class="user_name media-middle media-right">{{\App\User::getName($explore_comment->user_id)->name}} &nbsp;
-                            <h5 class="user_name media-middle media-bottom">{{\App\Model\Avatar::getInfo($explore_comment->user_id)->user_label}}</h5>
+                    <span class="user_name media-middle media-right">{{\App\User::getName(\Illuminate\Support\Facades\Auth::id())->name}} &nbsp;
+                            <h5 class="user_name media-middle media-bottom">{{\App\Model\Avatar::getInfo(\Illuminate\Support\Facades\Auth::id())->user_label}}</h5>
                         </span>
                 </div>
                 <div name="answer_area" class="panel-body" style="height: 200px">
@@ -80,6 +122,7 @@
                 </div>
             </div>
     </div>
+
     <script type="text/javascript" src="//unpkg.com/wangeditor/release/wangEditor.min.js"></script>
     <script type="text/javascript">
         window.onload = function(){
@@ -164,6 +207,7 @@
                     if(data.code === 0) {
                         //未关注
                        spop('<h4 class="spop-title">发布成功</h4>', 'success')
+                       setTimeout(function(){window.location.reload();},2000)
                     }
                 },'json')
         }

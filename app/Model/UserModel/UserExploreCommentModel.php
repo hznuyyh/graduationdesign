@@ -41,7 +41,7 @@ class UserExploreCommentModel extends Model
      */
     public function findExploreAllComment($explore_id)
     {
-        return DB::table('user_explore_comment')->where('explore_id',$explore_id)->get();
+        return DB::table('user_explore_comment')->where('explore_id',$explore_id)->orderBy('updated_at','desc')->get();
     }
 
 

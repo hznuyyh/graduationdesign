@@ -47,3 +47,10 @@ Route::group(['prefix' => 'direct'],function (){
 Route::group(['prefix' => 'class'],function (){
     Route::post('/follow','ClassController@classFollow')->middleware('auth');
 });
+
+Route::group(['prefix' => 'user'],function (){
+    Route::get('/index','UserRelationController@index')->middleware('auth');
+    Route::post('/relation','UserRelationController@relationOther')->middleware('auth');
+    Route::post('/message','UserRelationController@receiveMessage')->middleware('auth');
+
+});

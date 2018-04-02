@@ -11,6 +11,7 @@ use App\Model\Explore;
 use App\Model\UserModel\UserExploreCommentModel;
 use App\Model\UserModel\UserExploreFollowModel;
 use App\Model\UserModel\UserExploreGoodModel;
+use App\Model\UserModel\UserRelationModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,14 +47,24 @@ class ExploreController extends Controller
     {
         $data = Explore::find($explore_id);
         $user_explore_good_model = new UserExploreFollowModel();
-        $user_explore = $user_explore_good_model->findFollowToExplore(Auth::id(),$explore_id);
+        $user_relation_model     = new UserRelationModel();
+        $user_id = Auth::id();
+        $user_explore   = $user_explore_good_model->findFollowToExplore($user_id,$explore_id);
+        $target_user_id = $data['user_id'];
+        $user_relation  = $user_relation_model->findRelation($user_id,$target_user_id);
         //用户关注性
         if(empty($user_explore)) {
             $is_follow = 0;
         } else {
             $is_follow = 1;
         }
-        $data['is_follow'] = $is_follow;
+        if(empty($user_relation)) {
+            $is_relation = 0;
+        } else{
+            $is_relation = 1;
+        }
+        $data['is_follow']   = $is_follow;
+        $data['is_relation'] = $is_relation;
         //用户评论
         $user_explore_comment_model = new UserExploreCommentModel();
         $user_explore_data          = $user_explore_comment_model->findExploreAllComment($explore_id);
@@ -63,7 +74,6 @@ class ExploreController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * 问题存储
      */
     public function store(Request $request)
@@ -84,7 +94,7 @@ class ExploreController extends Controller
         ];
         $explore_model = new Explore();
         $explore_model->insertData($insert_data);
-        return redirect('/explore/index');
+        return json_encode(['code' => 0,'message' => 'success','data' => '']);
     }
 
     /**

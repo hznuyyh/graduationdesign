@@ -1,6 +1,23 @@
 @extends('layouts.app')
 @include('vendor.ueditor.assets')
 @section('content')
+    <div class="modal fade send_email" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">发送私信给 <small>{{\App\User::getName($data->user_id)->name}}</small></h4>
+                </div>
+                <div class="modal-body">
+                    <textarea name="message" class="form-control" height="350" placeholder="对TA说点什么.."> </textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" value="{{$data->user_id}}" onclick="sendEmail(this.value)">点击发送</button>
+                </div>
+            </div>
+        </div>
+    </div>
     {{--文章主体--}}
     <div class="panel panel-body">
         <div class="panel-heading">
@@ -54,7 +71,6 @@
                     <h4>{{\App\User::getName($data->user_id)->name}} &nbsp; </h4>
                     <p class="user_name media-middle media-bottom">{{\App\Model\Avatar::getInfo($data->user_id)->user_label}}</p>
                 </span>
-
                 <h5 class="col-md-4 text-center">
                     回答
                 </h5>
@@ -73,6 +89,20 @@
                 <h4 class="col-md-4 text-center">
                     3
                 </h4>
+                <div class="user_info">
+                    @if($data->is_relation == 1)
+                    <button class="btn btn-default col-sm-5 glyphicon glyphicon-heart-empty" value='{{$data->user_id}}' id="follow_user" onclick="followToUser(this.value)">
+                        取消关注
+                    </button>
+                    @else
+                    <button class="btn btn-info col-sm-5 glyphicon glyphicon-heart" value='{{$data->user_id}}' id="follow_user" onclick="followToUser(this.value)">
+                        关注他
+                    </button>
+                    @endif
+                    <button class="btn btn-default col-sm-5 col-lg-offset-2 glyphicon glyphicon-envelope" id="send_email" data-toggle="modal" data-target=".send_email">
+                        发私信
+                    </button>
+                </div>
             </div>
         </div>
         {{--评论部分--}}
@@ -116,9 +146,8 @@
                 <div name="answer_area" class="panel-body" style="height: 200px">
                     <div id="editor_toolbar" class="toolbar" style="border:1px solid #ccc;"></div>
                     <div id="editor_text"  class="text" style="height: 120px;border: 1px solid #ccc;">
-                        <p>写下回答...</p>
                     </div>
-                    <button id='comment_submit' style="margin: 2px" class="btn btn-success pull-right">发布问题</button>
+                    <button id='comment_submit' style="margin: 2px" class="btn btn-success pull-right">发表评论</button>
                 </div>
             </div>
     </div>
@@ -180,14 +209,12 @@
                     }
                 },'json')
         }
-
         /*
         展示评论框
          */
         function writeAnswer() {
             $('#answer_area').fadeIn(600).removeClass('hidden')
         }
-
         /**
          * 提交评论
          * @param text
@@ -210,6 +237,57 @@
                        setTimeout(function(){window.location.reload();},2000)
                     }
                 },'json')
+            }
+        /**
+         * 关注用户
+         */
+        function followToUser(value) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.post('/user/relation',
+                {
+                    target_user_id: value
+                },
+                function (data,status) {
+                    if(data.code === 0) {
+                        //未关注
+                        if (data.data.is_relation === 1){
+                            $('#follow_user').addClass('btn-default glyphicon-heart-empty').removeClass('btn-info glyphicon-heart');
+                            document.getElementById('follow_user').innerHTML = '&nbsp;取消关注';
+
+                        } else {
+                            $('#follow_user').removeClass('btn-default glyphicon-heart-empty').addClass('btn-info glyphicon-heart');
+                            document.getElementById('follow_user').innerHTML = '&nbsp;关注他';
+                        }
+                    }
+                },'json')
+        }
+
+        /**
+         * 发送私信
+         * @param value
+         */
+        function sendEmail(value) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.post('/user/message',
+                {
+                    target_user_id: value,
+                    message : $(" textarea[ name='message'] ").val()
+                },
+                function (data,status) {
+                    if(data.code === 0) {
+                        spop('<h4 class="spop-title">发送成功</h4>', 'success')
+                        $('.send_email').modal('hide')
+                    }
+                },'json')
+
         }
     </script>
 @endsection

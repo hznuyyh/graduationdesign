@@ -387,7 +387,58 @@ img {
 img:hover {
     -webkit-transform: scale(1.4);
             transform: scale(1.4);
-}@charset "UTF-8";
+}
+
+
+.column,
+.colon {
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 300;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 21px;
+    line-height: 21px;
+}
+
+.column {
+    -webkit-transition: -webkit-transform 300ms;
+    transition: -webkit-transform 300ms;
+    transition: transform 300ms;
+    transition: transform 300ms, -webkit-transform 300ms;
+}
+
+.colon {
+    -webkit-transition: -webkit-transform 300ms;
+    transition: -webkit-transform 300ms;
+    transition: transform 300ms;
+    transition: transform 300ms, -webkit-transform 300ms;
+    -webkit-transform: translateY(calc(12vh - 11px));
+    transform: translateY(calc(12vh - 11px));
+}
+.colon:after {
+    content: ':';
+}
+
+.num {
+    -webkit-transition: opacity 500ms, text-shadow 100ms;
+    transition: opacity 500ms, text-shadow 100ms;
+    opacity: 0.025;
+}
+.num.visible {
+    opacity: 1.0;
+    text-shadow: 1px 1px 0px #336699;
+}
+.num.close {
+    opacity: 0.01;
+}
+.num.far {
+    opacity: 0.01;
+}
+.num.distant {
+    opacity: 0.01;
+}
+@charset "UTF-8";
 /*!
  * smallPop 0.1.2 | https://github.com/silvio-r/spop
  * Copyright (c) 2015 Sílvio Rosa @silvior_

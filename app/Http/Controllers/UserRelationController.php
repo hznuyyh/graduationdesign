@@ -16,10 +16,52 @@ use Illuminate\Support\Facades\Auth;
 
 class UserRelationController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * 私信首页
+     */
     public function index()
     {
-        return view('user.user_info');
+        $user_id = Auth::id();
+        $user_message_model = new UserMessageModel();
+        $user_message       = $user_message_model->findMessage($user_id);
+        $message_data       = array();
+        $default_message    = array();
+        //私信列表
+        foreach ($user_message as $message) {
+            if ($message->to_user_id == $user_id) {
+                $message_data[$message->from_user_id] = $message->message;
+            } else {
+                $message_data[$message->to_user_id] = $message->message;
+            }
+        }
+        //默认聊天
+        foreach ($message_data as $key => $value) {
+            $default_message = $user_message_model->findTwoUserMessage($user_id,$key);
+            break;
+        }
+        return view('user.user_info', [
+                'message_data' => $message_data,
+                'default_message' => $default_message,
+            ]
+        );
     }
+
+    public function changeMessageUser(Request $request)
+    {
+        $data = $request->all();
+        $target_user_id = $data['target_user_id'];
+        $user_id        = Auth::id();
+        $user_message_model = new UserMessageModel();
+        $default_message = $user_message_model->findTwoUserMessage($user_id,$target_user_id);
+        return json_encode([
+            'code' => 0,
+            'message' => 'success',
+            'data' => $default_message
+        ]);
+
+    }
+
 
     /**
      * 关注或取消关注某人

@@ -84,7 +84,7 @@ class ExploreController extends Controller
         $user_id = Auth::id();
         $insert_data = [
             'title'    => $title,
-            'content'  => $body,
+            'content'  => trim($body,"<div></div>"),
             'user_id'  => $user_id,
             'topic_id' => 1,
             'comments_count' => 0,

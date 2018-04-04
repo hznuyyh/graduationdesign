@@ -41,8 +41,8 @@ Route::group(['prefix' => 'video'],function (){
 });
 Route::group(['prefix' => 'direct'],function (){
     Route::get('/receiverMessage','DirectController@connect');
-    Route::get('/chatRoom/live','DirectController@chatRoom');
-    Route::get('/chatRoom/camera','DirectController@cameraRoom');
+    Route::get('/chatRoom/live','DirectController@chatRoom')->middleware('auth');
+    Route::get('/chatRoom/camera','DirectController@cameraRoom')->middleware('auth');
 });
 Route::group(['prefix' => 'class'],function (){
     Route::post('/follow','ClassController@classFollow')->middleware('auth');
@@ -52,5 +52,5 @@ Route::group(['prefix' => 'user'],function (){
     Route::get('/index','UserRelationController@index')->middleware('auth');
     Route::post('/relation','UserRelationController@relationOther')->middleware('auth');
     Route::post('/message','UserRelationController@receiveMessage')->middleware('auth');
-
+    Route::post('/changeMessageUser','UserRelationController@changeMessageUser')->middleware('auth');
 });

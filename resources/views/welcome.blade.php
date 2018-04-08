@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>计算机图形学</title>
+        <title>杭师大教学网</title>
 
         <!-- Fonts -->
         <link href="https://fonts.useso.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">

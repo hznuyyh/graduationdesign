@@ -75,6 +75,7 @@ class RegisterController extends Controller
             'url'     => '',
             'user_label' => '该用户还没有个人介绍',
             'isUse'   => 1,
+            'index_url' => '',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ];

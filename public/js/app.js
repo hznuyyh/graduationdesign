@@ -36466,6 +36466,20 @@ $('button#contact').click(function () {
     $('nav#nav').toggleClass('active');
 });
 
+function getMessageList() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    return $.get('/user/messageList', {}, function (data, status) {
+        if (data.code === 0) {
+            return data.data;
+        }
+    }, 'json');
+}
+function getMessageInfo() {}
+
 /***/ }),
 /* 37 */
 /***/ (function(module, exports) {

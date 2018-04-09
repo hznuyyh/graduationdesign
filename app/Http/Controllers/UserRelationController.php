@@ -9,8 +9,10 @@
 namespace App\Http\Controllers;
 
 
+use App\Model\Avatar;
 use App\Model\UserModel\UserMessageModel;
 use App\Model\UserModel\UserRelationModel;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,29 +26,29 @@ class UserRelationController extends Controller
     {
         $user_id = Auth::id();
         $user_message_model = new UserMessageModel();
-        $user_message       = $user_message_model->findMessage($user_id);
+        $user_message_info  = $user_message_model->findMessage($user_id);
         $message_data       = array();
-        $default_message    = array();
         //私信列表
-        foreach ($user_message as $message) {
+        foreach ($user_message_info as $message) {
             if ($message->to_user_id == $user_id) {
-                $message_data[$message->from_user_id] = $message->message;
+                $message_data[$message->from_user_id] = array();
             } else {
-                $message_data[$message->to_user_id] = $message->message;
+                $message_data[$message->to_user_id]  = array();
             }
         }
         //默认聊天
         foreach ($message_data as $key => $value) {
             $default_message = $user_message_model->findTwoUserMessage($user_id,$key);
-            break;
+            array_push($message_data[$key],$default_message);
         }
-        return view('user.user_info', [
-                'message_data' => $message_data,
-                'default_message' => $default_message,
-            ]
-        );
+        return view('user.user_info', ['message_data' => $message_data,]);
     }
 
+    /**
+     * @param Request $request
+     * @return string
+     * 获取指定的用户聊天内容
+     */
     public function changeMessageUser(Request $request)
     {
         $data = $request->all();
@@ -59,8 +61,42 @@ class UserRelationController extends Controller
             'message' => 'success',
             'data' => $default_message
         ]);
-
     }
+
+    /**
+     *获取登录用户的私信列表
+     */
+    public function getMessageList()
+    {
+        $user_id = Auth::id();
+        $message_data_list  = array();
+        $user_info_data     = array();
+        $user_message_model = new UserMessageModel();
+        $user_message_list  = $user_message_model->findMessage($user_id);
+        //筛选
+        foreach ($user_message_list as $message) {
+            if ($message->to_user_id == $user_id) {
+                $message_data_list[$message->from_user_id] = $message->message;
+            } else {
+                $message_data_list[$message->to_user_id] = $message->message;
+            }
+        }
+        //拼装用户数据
+        $user_model = new User();
+        $avatar_model = new Avatar();
+        foreach ($message_data_list as $key => $value) {
+            $user_info   = $user_model->getName($key);
+            $avatar_info = $avatar_model->getInfo($key);
+            $user_info->avatar = empty($avatar_info->url) ? '/image/avatar/default_avatar.jpeg' : $avatar_info->url;
+            array_push($user_info_data,$user_info);
+        }
+        return json_encode([
+            'code'    => 0,
+            'message' => 'success',
+            'data'    => $user_info_data
+        ]);
+    }
+
 
 
     /**
@@ -115,6 +151,20 @@ class UserRelationController extends Controller
         $data = $user_message_model->insertMessage($insert_data);
         return json_encode(['code' => 0,'message' => 'success','data' => $data]);
 
+    }
+
+    private function object_to_array($obj) {
+        $obj = (array)$obj;
+        foreach ($obj as $k => $v) {
+            if (gettype($v) == 'resource') {
+                return;
+            }
+            if (gettype($v) == 'object' || gettype($v) == 'array') {
+                $obj[$k] = (array)$this->object_to_array($v);
+            }
+        }
+
+        return $obj;
     }
 
 

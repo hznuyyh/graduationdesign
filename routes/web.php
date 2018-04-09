@@ -50,6 +50,7 @@ Route::group(['prefix' => 'class'],function (){
 
 Route::group(['prefix' => 'user'],function (){
     Route::get('/index','UserRelationController@index')->middleware('auth');
+    Route::get('/messageList','UserRelationController@getMessageList')->middleware('auth');
     Route::post('/relation','UserRelationController@relationOther')->middleware('auth');
     Route::post('/message','UserRelationController@receiveMessage')->middleware('auth');
     Route::post('/changeMessageUser','UserRelationController@changeMessageUser')->middleware('auth');

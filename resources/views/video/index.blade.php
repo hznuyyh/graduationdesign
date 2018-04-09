@@ -49,7 +49,7 @@
                 <hr class="split-line">
             </div>
                 @foreach($class_video_data as $item)
-                    <div class="col-lg-3" >
+                    <div class="col-lg-4" >
                         <div class="text-center">
                             <h4 class="center-align" style="overflow: hidden; text-overflow: ellipsis;">{{$item->name}}</h4>
                         </div>

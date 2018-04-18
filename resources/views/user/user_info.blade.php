@@ -77,6 +77,7 @@
             </div>
         </div>
         @endforeach
+
         {{--<div class="panel col-md-6 col-md-offset-1" id="default-message">--}}
             {{--<div class="panel-heading">--}}
                 {{--<div class="media-heading ">--}}

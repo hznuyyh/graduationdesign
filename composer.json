@@ -1,4 +1,7 @@
 {
+    "repositories": [
+        { "type": "composer", "url": "http://satis.mifengkong.cn/" }
+    ],
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],
@@ -10,7 +13,8 @@
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "overtrue/laravel-ueditor": "~1.0",
-        "workerman/workerman": "^3.5"
+        "workerman/workerman": "^3.5",
+        "fengrong/log": "1.0.1"
     },
     "require-dev": {
         "eaglewu/swoole-ide-helper": "dev-master",
@@ -54,6 +58,7 @@
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,
-        "optimize-autoloader": true
+        "optimize-autoloader": true,
+        "secure-http" : false
     }
 }

@@ -38,6 +38,7 @@ Route::group(['prefix' => 'video'],function (){
    Route::get('/index/{id}','VideoController@index')->middleware('auth');
    Route::get('/create','VideoController@create')->middleware('auth');
    Route::post('/store','VideoController@store')->middleware('auth');
+   Route::get('/test','VideoController@test');
 });
 Route::group(['prefix' => 'direct'],function (){
     Route::get('/receiverMessage','DirectController@connect');

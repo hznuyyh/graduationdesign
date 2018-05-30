@@ -15,6 +15,7 @@ use App\Model\UserModel\UserClassModel;
 use App\Model\Video;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use FRLog\Log;
 
 class VideoController extends Controller
 {
@@ -61,5 +62,10 @@ class VideoController extends Controller
          $video = new Video();
          $video->insert($insert_data);
          return redirect('/video/index');
+    }
+
+    public function test()
+    {
+        Log::w("composer_test","hello,world","to_try");
     }
 }

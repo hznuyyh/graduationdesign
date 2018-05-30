@@ -66,6 +66,7 @@ class VideoController extends Controller
 
     public function test()
     {
-        Log::w("composer_test","hello,world","to_try");
+       echo Log::w("composer_test","hello,world","to_try");
+        echo 1;
     }
 }

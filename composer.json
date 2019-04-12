@@ -1,6 +1,6 @@
 {
     "repositories": [
-        { "type": "composer", "url": "http://satis.mifengkong.cn/" }
+        { "type": "composer", "url": "" }
     ],
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
